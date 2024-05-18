@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Books</title>
+</head>
+<body>
+    <h1>Book List</h1>
+    <div>
+        <a href="?sort_by=title&direction={{ new_direction }}">Sort by title {% if sort_by == 'title' %}({{ direction }}){% endif %}</a> |
+        <a href="?sort_by=author__last_name&direction={{ new_direction }}">Sort by author {% if sort_by == 'author__last_name' %}({{ direction }}){% endif %}</a>
+    </div>
+    <ul>
+        {% for book in books %}
+        <li>{{ book.title }} by {{ book.author.first_name }} {{ book.author.last_name }}</li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'index' %}">Back to home</a>
+</body>
+</html>

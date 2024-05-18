@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>School Library</title>
+</head>
+<body>
+    <h1>Welcome to the School Library</h1>
+    <p>Number of books: {{ num_books }}</p>
+    <p>Number of authors: {{ num_authors }}</p>
+    <a href="{% url 'book_list' %}">View book list</a><br>
+    <a href="{% url 'author_list' %}">View author list</a>
+</body>
+</html>
