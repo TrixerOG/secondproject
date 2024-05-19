@@ -1,14 +1,18 @@
 {% extends "base_generic.html" %}
-{% block title %}Детали автора{% endblock %}
+
+{% block title %}{{ author.first_name }} {{ author.last_name }}{% endblock %}
 
 {% block content %}
 <h1>{{ author.first_name }} {{ author.last_name }}</h1>
-<p>Дата рождения: {{ author.date_of_birth }}</p>
-<p>Дата смерти: {{ author.date_of_death }}</p>
+<p><strong>Дата рождения:</strong> {{ author.date_of_birth }}</p>
+<p><strong>Дата смерти:</strong> {{ author.date_of_death }}</p>
+
 <h2>Книги</h2>
 <ul>
     {% for book in author.book_set.all %}
     <li>{{ book.title }}</li>
     {% endfor %}
 </ul>
+
+<a href="{% url 'authors' %}" class="btn btn-secondary">Назад к списку авторов</a>
 {% endblock %}

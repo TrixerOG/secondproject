@@ -3,8 +3,9 @@ from .models import Book, Author
 
 
 def index(request):
-    num_books = Book.objects.count()
-    num_authors = Author.objects.count()
+    num_books = Book.objects.all().count()
+    num_authors = Author.objects.all().count()
+
     return render(request, 'index.html', context={'num_books': num_books, 'num_authors': num_authors})
 
 
@@ -18,14 +19,14 @@ def book_list(request):
 
     new_direction = 'desc' if direction == 'asc' else 'asc'
 
-    return render(request, 'catalog/book_list.html', {'books': books, 'new_direction': new_direction})
+    return render(request, 'book_list.html', {'books': books, 'new_direction': new_direction})
 
 
 def author_list(request):
     authors = Author.objects.all()
-    return render(request, 'catalog/author_list.html', {'authors': authors})
+    return render(request, 'author_list.html', {'authors': authors})
 
 
 def author_detail(request, pk):
     author = Author.objects.get(pk=pk)
-    return render(request, 'catalog/author_detail.html', {'author': author})
+    return render(request, 'author_detail.html', {'author': author})
