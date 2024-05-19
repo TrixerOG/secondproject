@@ -19,11 +19,6 @@ class Migration(migrations.Migration):
             model_name='book',
             name='summary',
         ),
-        migrations.AddField(
-            model_name='author',
-            name='date_of_death',
-            field=models.DateField(blank=True, null=True, verbose_name='Died'),
-        ),
         migrations.AlterField(
             model_name='book',
             name='author',
