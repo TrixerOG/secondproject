@@ -1,13 +1,14 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>School Library</title>
-</head>
-<body>
-    <h1>Welcome to the School Library</h1>
-    <p>Number of books: {{ num_books }}</p>
-    <p>Number of authors: {{ num_authors }}</p>
-    <a href="{% url 'book_list' %}">View book list</a><br>
-    <a href="{% url 'author_list' %}">View author list</a>
-</body>
-</html>
+{% extends "base_generic.html" %}
+{% block title %}Главная{% endblock %}
+
+{% block content %}
+<div class="jumbotron">
+    <h1 class="display-4">Добро пожаловать в школьную библиотеку</h1>
+    <p class="lead">Это простой каталог книг и авторов.</p>
+    <hr class="my-4">
+    <p>Количество книг: {{ num_books }}</p>
+    <p>Количество авторов: {{ num_authors }}</p>
+    <a class="btn btn-primary btn-lg" href="{% url 'books' %}" role="button">Просмотреть книги</a>
+    <a class="btn btn-secondary btn-lg" href="{% url 'authors' %}" role="button">Просмотреть авторов</a>
+</div>
+{% endblock %}

@@ -1,15 +1,24 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Authors</title>
-</head>
-<body>
-    <h1>Author List</h1>
-    <ul>
+{% extends "base_generic.html" %}
+{% block title %}Список авторов{% endblock %}
+
+{% block content %}
+<h1>Список авторов</h1>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Имя</th>
+            <th>Дата рождения</th>
+            <th>Дата смерти</th>
+        </tr>
+    </thead>
+    <tbody>
         {% for author in authors %}
-        <li><a href="{% url 'author_detail' author.pk %}">{{ author.first_name }} {{ author.last_name }}</a></li>
+        <tr>
+            <td><a href="{% url 'author-detail' author.pk %}">{{ author.first_name }} {{ author.last_name }}</a></td>
+            <td>{{ author.date_of_birth }}</td>
+            <td>{{ author.date_of_death }}</td>
+        </tr>
         {% endfor %}
-    </ul>
-    <a href="{% url 'index' %}">Back to home</a>
-</body>
-</html>
+    </tbody>
+</table>
+{% endblock %}
