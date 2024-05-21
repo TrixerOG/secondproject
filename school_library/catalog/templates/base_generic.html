@@ -1,103 +1,29 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Каталог библиотеки{% endblock %}</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <style>
-        body {
-            padding-top: 56px; /* Space for navbar */
-            background-color: #f2f2f2;
-        }
-        .container-fluid {
-            max-width: 1200px;
-        }
-        .sidebar {
-            background-color: #343a40;
-            color: #ffffff;
-            padding: 25px; /* Увеличенный отступ */
-            border-radius: 8px;
-            height: 100vh;
-            position: fixed;
-            top: 56px; /* Space for navbar */
-            left: 0;
-            width: 220px; /* Adjusted sidebar width */
-        }
-        .sidebar a {
-            color: #ffffff;
-            text-decoration: none;
-            font-size: 1.3rem; /* Увеличенный размер шрифта */
-            display: block;
-            padding: 20px; /* Увеличенный padding */
-            border-radius: 5px;
-            margin-bottom: 20px; /* Увеличенный margin-bottom */
-            text-align: center;
-        }
-        .sidebar a:hover {
-            background-color: #ffc107;
-            color: #343a40;
-        }
-        .sidebar h3 {
-            font-size: 1.7rem; /* Увеличенный размер шрифта */
-            margin-top: 3rem;
-            margin-bottom: 4rem; /* Увеличенный margin-bottom */
-            text-align: center;
-        }
-        .content {
-            background-color: #ffffff;
-            padding: 20px;
-            border-radius: 8px;
-            margin-left: 250px; /* Увеличенный отступ слева для контента */
-            margin-top: 20px;
-        }
-        .navbar {
-            margin-bottom: 0;
-            background-color: #6c757d;
-            color: #ffffff;
-            width: 100%;
-            position: fixed;
-            top: 0;
-            z-index: 1000;
-        }
-        .navbar a {
-            color: #ffffff;
-            text-decoration: none;
-            padding: 10px 15px;
-            display: block;
-        }
-        .navbar a:hover {
-            background-color: #ffc107;
-            color: #343a40;
-        }
-    </style>
+    <title>Библиотека школы</title>
+    <link rel="stylesheet" href="{% static 'catalog/style.css' %}">
 </head>
 <body>
-    <div class="navbar navbar-expand-lg">
-        <a class="navbar-brand" href="{% url 'index' %}">Библиотека школы</a>
-        <div class="navbar-nav">
-            <a class="nav-link" href="{% url 'books' %}">Книги</a>
-            <a class="nav-link" href="{% url 'authors' %}">Авторы</a>
-        </div>
+    <div class="top-bar">
+        <h1>Библиотека школы</h1>
+        <nav>
+            <ul>
+                <li><a href="{% url 'index' %}">Главная</a></li>
+                <li><a href="{% url 'book_list' %}">Книги</a></li>
+                <li><a href="{% url 'author_list' %}">Авторы</a></li>
+                <li>
+                    <form method="get" action="{% url 'search' %}">
+                        <input type="text" name="query" placeholder="Поиск...">
+                        <button type="submit">Искать</button>
+                    </form>
+                </li>
+            </ul>
+        </nav>
     </div>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-3 sidebar">
-                <h3>Навигация</h3>
-                <ul class="list-unstyled">
-                    <li><a href="{% url 'index' %}" class="btn btn-dark">Главная</a></li>
-                    <li><a href="{% url 'books' %}" class="btn btn-dark">Книги</a></li>
-                    <li><a href="{% url 'authors' %}" class="btn btn-dark">Авторы</a></li>
-                </ul>
-            </div>
-            <div class="col-md-9 content">
-                {% block content %}
-                {% endblock %}
-            </div>
-        </div>
+    <div class="content">
+        {% block content %}
+        {% endblock %}
     </div>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

@@ -1,0 +1,28 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<h1>Результаты поиска</h1>
+
+<form method="get" action="{% url 'search' %}">
+    {{ form.as_p }}
+    <button type="submit">Искать</button>
+</form>
+
+<h2>Книги</h2>
+<ul>
+    {% for book in books %}
+        <li>{{ book.title }} by {{ book.author.first_name }} {{ book.author.last_name }}</li>
+    {% empty %}
+        <li>Нет результатов</li>
+    {% endfor %}
+</ul>
+
+<h2>Авторы</h2>
+<ul>
+    {% for author in authors %}
+        <li>{{ author.first_name }} {{ author.last_name }}</li>
+    {% empty %}
+        <li>Нет результатов</li>
+    {% endfor %}
+</ul>
+{% endblock %}
